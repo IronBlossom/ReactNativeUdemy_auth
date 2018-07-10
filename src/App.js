@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import firebase from 'firebase';
 import { Header } from './components/common';
 import LoginForm from './components/LoginForm';
 
 class App extends Component {
   componentWillMount() {
+    const firebase = require('firebase');
     firebase.initializeApp({
       apiKey: 'AIzaSyAel2cNKe7XgFLKwBq0QmxQx1DYADpYRPE',
       authDomain: 'authentication-dfe29.firebaseapp.com',
