@@ -8,7 +8,7 @@ import {
   MESSAGING_SENDER_ID
 } from 'react-native-dotenv';
 import { View } from 'react-native';
-import { Header, Button, Spinner } from './components/common';
+import { Header, Button, Spinner, CardSection } from './components/common';
 import LoginForm from './components/LoginForm';
 
 const firebase = require('firebase');
@@ -38,20 +38,30 @@ class App extends Component {
   renderContent() {
     switch (this.state.loggedIn) {
       case true:
-        return <Button>Log Out</Button>;
+        return (
+          <CardSection>
+            <Button propOnPressed={() => firebase.auth().signOut()}>
+              Log Out
+            </Button>
+          </CardSection>
+        );
       case false:
         return <LoginForm />;
       default:
-        return <Spinner sizeOfSpinner="large" />;
+        return (
+          <CardSection>
+            <Spinner sizeOfSpinner="large" />
+          </CardSection>
+        );
 
     }
   }
 
   render() {
     return (
-      <View style={{ width: '100%', height: '100%' }} >
+      <View >
         <Header headerText="Authentication" />
-        
+
         {this.renderContent()}
       </View>
     );
